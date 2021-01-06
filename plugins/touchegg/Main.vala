@@ -22,11 +22,6 @@ public class Gala.Plugins.Touchegg.Plugin : Gala.Plugin {
     private GLib.Settings gala_settings;
     private GLib.Settings touchpad_settings;
 
-    /**
-     * Percentage of the animation to be completed to apply the action.
-     */
-    private const int SUCCESS_THRESHOLD = 20;
-
     public override void initialize (Gala.WindowManager window_manager) {
         wm = window_manager;
         gala_settings = new GLib.Settings ("io.elementary.desktop.wm.gestures");
@@ -78,7 +73,7 @@ public class Gala.Plugins.Touchegg.Plugin : Gala.Plugin {
         var hints = new GLib.HashTable<string, Variant> (str_hash, str_equal);
         hints.insert ("manual_animation", new Variant.boolean (true));
         hints.insert ("event", new Variant.string (event));
-        hints.insert ("percentage", new Variant.double (gesture.percentage));
+        hints.insert ("percentage", new Variant.int32 (gesture.percentage));
         hints.insert ("elapsed_time", new Variant.uint64 (gesture.elapsed_time));
         return hints;
     }
