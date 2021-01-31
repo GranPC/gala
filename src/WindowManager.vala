@@ -499,7 +499,8 @@ namespace Gala {
             var dest = (direction == Meta.MotionDirection.LEFT ? 32.0f : -32.0f);
 
             GestureAnimationDirector.OnUpdate on_animation_update = (percentage) => {
-                var x = GestureAnimationDirector.animation_value (0.0f, dest, percentage);
+                var adjusted_percentage = Math.fmin (percentage * 2, 100);
+                var x = GestureAnimationDirector.animation_value (0.0f, dest, (int) adjusted_percentage);
                 ui_group.x = x;
             };
 
