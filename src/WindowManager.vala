@@ -105,6 +105,13 @@ namespace Gala {
          */
         public const int WORKSPACE_GAP = 24;
 
+        /**
+         * When swiping at the begin/end of the workspace list, a nudge animation is played.
+         * If using a touchpad or touchscreen the animation is smaller that using the keyboard. This
+         * multiplier allow to use a more noticeable animation.
+         */
+        private const int NUDGE_ANIMATION_TOUCH_MULTIPLIER = 2;
+
         construct {
             gesture_animation_director = new GestureAnimationDirector (AnimationDuration.WORKSPACE_SWITCH_MIN, AnimationDuration.WORKSPACE_SWITCH);
 
@@ -499,8 +506,8 @@ namespace Gala {
             var dest = (direction == Meta.MotionDirection.LEFT ? 32.0f : -32.0f);
 
             GestureAnimationDirector.OnUpdate on_animation_update = (percentage) => {
-                var adjusted_percentage = Math.fmin (percentage * 2, 100);
-                var x = GestureAnimationDirector.animation_value (0.0f, dest, (int) adjusted_percentage);
+                var adjusted_percentage = Math.fmin (percentage * NUDGE_ANIMATION_TOUCH_MULTIPLIER, 100);
+                var x = GestureAnimationDirector.animation_value (0.0f, dest, adjusted_percentage, true);
                 ui_group.x = x;
             };
 
@@ -1896,8 +1903,8 @@ namespace Gala {
             var animation_mode = Clutter.AnimationMode.EASE_OUT_CUBIC;
 
             GestureAnimationDirector.OnUpdate on_animation_update = (percentage) => {
-                var x_out = GestureAnimationDirector.animation_value (0.0f, x2, percentage);
-                var x_in = GestureAnimationDirector.animation_value (-x2, 0.0f, percentage);
+                var x_out = GestureAnimationDirector.animation_value (0.0f, x2, percentage, true);
+                var x_in = GestureAnimationDirector.animation_value (-x2, 0.0f, percentage, true);
 
                 out_group.x = x_out;
                 in_group.x = x_in;
