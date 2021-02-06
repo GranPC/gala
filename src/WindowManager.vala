@@ -107,7 +107,7 @@ namespace Gala {
 
         /**
          * When swiping at the begin/end of the workspace list, a nudge animation is played.
-         * If using a touchpad or touchscreen the animation is smaller that using the keyboard. This
+         * If using a touchpad or touchscreen the animation is smaller than using the keyboard. This
          * multiplier allow to use a more noticeable animation.
          */
         private const int NUDGE_ANIMATION_TOUCH_MULTIPLIER = 2;
