@@ -3,6 +3,10 @@
 
 A window & compositing manager based on libmutter and designed by elementary for use with Pantheon.
 
+## About this fork
+
+This fork backports elementary OS 6.0's touchegg-based gestures to elementary OS 5.1. It's not guaranteed to be stable or perfect. You are probably better off just waiting for elementary OS 6.0 to ship.
+
 ## Building, Testing, and Installation
 
 You'll need the following dependencies:
