@@ -78,7 +78,7 @@ public class Gala.Plugins.Touchegg.Client : Object {
      * Stablish a connection with the daemon server.
      */
     public void stablish_connection () {
-        ThreadFunc<void> run = () => {
+        ThreadFunc<bool> run = () => {
             var connected = false;
 
             while (!connected && reconnection_attempts < MAX_RECONNECTION_ATTEMPTS) {
@@ -108,10 +108,12 @@ public class Gala.Plugins.Touchegg.Client : Object {
                         warning ("Maximum number of reconnections reached, aborting");
                     }
                 }
+
             }
+            return false;
         };
 
-        new Thread<void> (null, (owned) run);
+        new Thread<bool> (null, (owned) run);
     }
 
     public void stop () {

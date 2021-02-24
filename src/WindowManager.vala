@@ -1628,8 +1628,6 @@ namespace Gala {
 
                     break;
                 case Meta.WindowType.NOTIFICATION:
-                    notification_stack.show_notification (actor, enable_animations);
-                    map_completed (actor);
 
                     break;
                 default:
